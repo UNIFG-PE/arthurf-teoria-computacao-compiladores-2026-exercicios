@@ -55,9 +55,6 @@ def palindromo(input: str):
         r -= 1 
     return True
 
-class LexerException(Exception):
-    pass
-
 def tokenize(input: str):
     NUMBER_CHARS = "0123456789."
     ID_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
@@ -118,7 +115,7 @@ def tokenize(input: str):
                 i += 1
                 tokens.append(("NE", "!="))
             else:
-                raise LexerException 
+                raise ValueError 
         elif input[i] in NUMBER_CHARS:
             while i < len(input) and input[i] in NUMBER_CHARS:
                 buffer += input[i]
@@ -126,7 +123,7 @@ def tokenize(input: str):
             try:
                 float(buffer)
             except ValueError:
-                raise LexerException
+                raise ValueError
             tokens.append(("NUM", buffer))
             buffer = ""
             continue 
@@ -143,7 +140,7 @@ def tokenize(input: str):
         elif input[i].isspace():
             pass
         else:
-            raise LexerException
+            raise ValueError
         i += 1
     return tokens 
 
