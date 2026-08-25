@@ -186,4 +186,5 @@ D1. Explique por que a linguagem "cadeias w que são programas Python que termin
 E por fim executaremos o programa com sua própria cadeia como entrada $g(g)$, internamente o programa irá avaliar a função $f(g)$ e então a seguinte contradição será criada:
 - Caso $f(g) = 1$ o programa não irá terminar, contradizendo o próprio resultado de $f$.
 - Caso $f(g) = 0$ o programa irá terminar, também contradizendo o resultado de $f$.
+
 Isso significa que é impossível que um programa implemente $f(x)$, confirmando o enunciado inicial que nenhum programa mesmo com memória infinita pode reconhecer a linguagem "cadeias w que são programas Python que terminam sua execução".
