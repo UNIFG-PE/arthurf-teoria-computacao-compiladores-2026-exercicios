@@ -8,7 +8,7 @@ Por exemplo, na linguagem: $L = \lbrace x^ny^{2n} \mid n \ge 0 \rbrace$
 
 Um gerador dessa linguagem poderia ser  definido como:
 \
-$S \rightarrow xSyy \\ S \rightarrow \epsilon$
+$S \rightarrow xSyy \\ S \rightarrow \varepsilon$
 
 E então um reconhecedor iria adicionar cada $x$ a uma pilha e a cada 2 símbolos $y$ remover um $x$ da pilha. O reconhecedor precisaria garantir que a pilha fique vazia no final e também garantir que não há nenhum outro simbolo $y$ assim que a pilha fique vazia, caso contrario o reconhecedor iria rejeitar a cadeia.
 
