@@ -127,3 +127,28 @@ cadeias pertencentes + 2 não pertencentes. `Σ = {a, b}`:
 |3|$\lbrace w\in \Sigma^*\mid bb \text{ não ocorre em }w\rbrace$|`aabaaa`, `baba` e `abaab`|`bb` e `aabb`|
 |4|$\lbrace w\in \Sigma^*\mid \lvert w\rvert\equiv 0 \pmod 2\land primeiro(w)=último(w)\rbrace$|`bb`, `baab` e `aabbba`|`aab` e `ab`|
 |5|$\lbrace w\in \Sigma^*\mid w=a^ib^ja^k, i+k=j\rbrace$|`abba`, `aabbba` e `aaabbbbbaa`|`aabba` e `abbba`|
+
+---
+
+**E1.** Escreva `enumerar(sigma)` como um **gerador infinito** (`yield`) que
+produz `Σ*` em ordem canônica indefinidamente. Use-o para imprimir a 1000ª
+cadeia sobre `{a,b,c}`. Explique por que esse gerador é a prova construtiva de
+que `Σ*` é enumerável — e por que **não** existe gerador análogo para o conjunto
+de todas as linguagens sobre `Σ`.
+
+(Utilizando as funções definidas em `linguagens.py`)
+```py
+def enumerar(sigma: set[str]) -> Iterator[str]:
+    tamanho = 0
+    while True:
+        cadeias = sorted(sigma_n(sigma, tamanho))
+        for cadeia in cadeias:
+            yield cadeia
+        tamanho += 1
+```
+
+O gerador é uma **prova construtiva** de que `Σ*` é enumerável porque ele produz todas as cadeias de `Σ*` em uma sequência, em ordem canônica. Como toda cadeia possui tamanho finito, ela será alcançada pelo gerador em algum momento.
+\
+Já o conjunto de **todas as linguagens** sobre `Σ` é `𝒫(Σ*)`, o conjunto das partes de `Σ*`. Pelo **Teorema de Cantor**, o conjunto das partes de um conjunto enumerável infinito é **não enumerável**.
+\
+Portanto, existe um gerador para todas as cadeias de `Σ*`, mas não existe um gerador que produza todas as linguagens sobre `Σ`.

@@ -1,4 +1,5 @@
-from linguagens import sigma_n, sigma_star, concat, potencia, kleene, positivo
+from linguagens import sigma_n, sigma_star, concat, potencia, kleene, positivo, reverso, complemento, prefixos, sufixos, subcadeias, ordem_canonica, eh_palindromo, verificar_identidades
+
 
 def test_sigma_n():
     assert sigma_n(set(), 4) == set()
@@ -30,7 +31,7 @@ def test_potencia():
     assert potencia({'a', 'b'}, 0) == {''}
     assert potencia({'a', 'b'}, 2) == {'aa', 'ab', 'ba', 'bb'}
     assert potencia({'a', 'ab'}, 2) == {'aa', 'aab', 'aba', 'abab'}
-    
+
 
 def test_kleene():
     assert kleene({''}, 2) == {''}
@@ -46,9 +47,50 @@ def test_positivo():
     assert positivo(set(), 3) == set()
     assert positivo({'ab', 'a'}, 1) == {'ab', 'a'}
     assert positivo({'ab', 'cbe'}, 3) == {'abcbeab', 'cbecbecbe', 'cbeabcbe', 'cbecbeab', 'abcbe', 'ab', 'ababcbe', 'cbeab', 'abab', 'abcbecbe', 'cbe', 'cbeabab', 'cbecbe', 'ababab'}
-    
 
-'''
+
+def test_reverso():
+    assert reverso(set()) == set()
+    assert reverso({''}) == {''}
+    assert reverso({'abc'}) == {'cba'}
+    assert reverso({'ab', 'cde'}) == {'ba', 'edc'}
+
+
+def test_complemento():
+    assert complemento(set(), {'a', 'b'}, 2) == {'', 'a', 'b', 'aa', 'ab', 'ba', 'bb'}
+    assert complemento({''}, {'a', 'b'}, 2) == {'a', 'b', 'aa', 'ab', 'ba', 'bb'}
+    assert complemento({'a', 'b'}, {'a', 'b'}, 2) == {'', 'aa', 'ab', 'ba', 'bb'}
+
+
+def test_prefixos():
+    assert prefixos('') == {''}
+    assert prefixos('a') == {'', 'a'}
+    assert prefixos('abc') == {'', 'a', 'ab', 'abc'}
+
+
+def test_sufixos():
+    assert sufixos('') == {''}
+    assert sufixos('a') == {'', 'a'}
+    assert sufixos('abc') == {'', 'c', 'bc', 'abc'}
+
+
+def test_subcadeias():
+    assert subcadeias('') == {''}
+    assert subcadeias('a') == {'', 'a'}
+    assert subcadeias('abc') == {'', 'a', 'b', 'c', 'ab', 'bc', 'abc'}
+
+
 def test_ordem_canonica():
     assert ordem_canonica({"0", "1"}, 7) == ["", "0", "1", "00", "01", "10", "11"]
-'''
+    assert ordem_canonica({'0', '1'}, 0) == []
+    assert ordem_canonica({'0', '1'}, 1) == [''] 
+    assert ordem_canonica({''}, 4) == ['', '', '', '']
+
+
+def test_eh_palindromo():
+    assert eh_palindromo('') == True
+    assert eh_palindromo('a') == True
+    assert eh_palindromo('abba') == True
+    assert eh_palindromo('abcba') == True
+    assert eh_palindromo('abca') == False
+    assert eh_palindromo('abc') == False
